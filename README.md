@@ -14,15 +14,6 @@ Se implementa el patrón **Modelo – Control – Vista (MVC)**:
 - **Control:** clases que manejan la lógica y acceden al modelo (`AutoControl.php` y `PersonaControl.php`).  
 - **Vista:** páginas PHP y HTML que muestran la información al usuario, con **Bootstrap** y validaciones **JavaScript**.  
 
----
-
-## 📂 Estructura del proyecto
-
-- **`BaseDatos.php`** – Conexión a la base de datos  
-- **Control/** – Clases de control:
-  - `AutoControl.php` – Control de autos  
-  - `PersonaControl.php` – Control de personas  
-
 
 ---
 
