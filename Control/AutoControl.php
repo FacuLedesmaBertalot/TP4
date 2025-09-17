@@ -83,6 +83,25 @@ class AutoControl extends Auto {
 
         return $resultado;
     }
+
+
+    // MÉTODO PARA OBTENER TODOS LOS AUTOS
+    public static function listarTodos() {
+        $base = new BaseDatos();
+        $sql = "SELECT a.Patente, a.Marca, a.Modelo, a.DniDuenio, p.Nombre, p.Apellido
+                FROM auto a 
+                INNER JOIN persona p ON a.DniDuenio = p.NroDni";
+
+        if ($base->Ejecutar($sql) > 0) {
+            $autos = [];
+
+            while ($row = $base->Registro()) {
+                $autos[] = $row;
+            }
+            return $autos;
+        }
+        return [];
+    }
     
 }
 

@@ -8,7 +8,7 @@ class Auto {
     private $dniDuenio;
 
     // Constructor
-    public function __construct($patente, $marca, $modelo, $dniDuenio)
+    public function __construct($patente = "", $marca = "", $modelo = "", $dniDuenio = "")
     {
         $this->patente = $patente;
         $this->marca = $marca;
