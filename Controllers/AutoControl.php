@@ -102,6 +102,27 @@ class AutoControl extends Auto {
         }
         return [];
     }
+
+
+    // MÉTODO PARA BUSCAR POR PATENTE
+    public static function buscarPorPatente($patente) {
+        $db = new BaseDatos();
+        $sql = "SELECT * 
+                FROM auto
+                WHERE Patente = '$patente'";
+        $resultado = null;
+        
+        if ($db->Ejecutar($sql) > 0) {
+            $registro = $db->Registro();
+            $auto = new Auto();
+            $auto->setPatente($registro['Patente']);
+            $auto->setMarca($registro['Marca']);
+            $auto->setModelo($registro['Modelo']);
+            $auto->setDniDuenio($registro['DniDuenio']);
+            $resultado = $auto;
+        }
+        return $resultado;
+    }
     
 }
 
