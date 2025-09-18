@@ -1,8 +1,8 @@
 <?php
 // Incluimos las clases necesarias
-include_once "../Modelo/Conector/BaseDatos.php";
-include_once "../Modelo/Auto.php";
-include_once "../Control/AutoControl.php";
+include_once "../Models/Conector/BaseDatos.php";
+include_once "../Models/Auto.php";
+include_once "../Controllers/AutoControl.php";
 
 // Llamada al método estático para obtener todos los autos con dueños
 $autos = AutoControl::listarTodos();
