@@ -1,4 +1,7 @@
 <?php
+include_once "../Models/Conector/BaseDatos.php";
+include_once "../Models/Persona.php";
+
 class PersonaControl extends Persona {
 
     // Validar Datos

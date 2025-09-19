@@ -123,6 +123,29 @@ class AutoControl extends Auto {
         }
         return $resultado;
     }
+
+
+    // LISTAR AUTOS POR DNI DEL DUEÑO
+    public static function listarPorDni($dni) {
+        $db = new BaseDatos();
+        $autos = [];
+
+        $sql = "SELECT *
+                FROM auto
+                WHERE DniDuenio = '$dni'";
+
+        if ($db->Ejecutar($sql) > 0) {
+            while ($registro = $db->Registro()) {
+                $a = new Auto();
+                $a->setPatente($registro['Patente']);
+                $a->setMarca($registro['Marca']);
+                $a->setModelo($registro['Modelo']);
+                $a->setDniDuenio($registro['DniDuenio']);
+                $autos[] = $a;
+            }
+        }
+        return $autos;
+    }
     
 }
 

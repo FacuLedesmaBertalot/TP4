@@ -22,7 +22,7 @@ $personas = PersonaControl::listarTodos();
         <h1 class="mb-4">Listado de Personas</h1>
 
         <?php if (empty($personas)): ?>
-            <div class="alert alert-warning">No Hay Persnas Registradas.</div>
+            <div class="alert alert-warning">No Hay Personas Registradas.</div>
         <?php else: ?>
             <table class="table table-striped table-bordered">
                 <thead class="table-dark">
