@@ -9,7 +9,7 @@ class Persona {
     private $domicilio;
 
     // Constructor
-    public function __construct($nroDNI, $nombre, $apellido, $fechaNac, $telefono, $domicilio)
+    public function __construct($nroDNI = null, $nombre = null, $apellido = null, $fechaNac = null, $telefono = null, $domicilio = null)
     {
         $this->nroDNI = $nroDNI;
         $this->nombre = $nombre;
@@ -20,20 +20,53 @@ class Persona {
     }
 
     // Getters
-    public function getNroDNI() { return $this->nroDNI; }
-    public function getNombre() { return $this->nombre; }
-    public function getApellido() { return $this->apellido; }
-    public function getFechaNac() { return $this->fechaNac; }
-    public function getTelefono() { return $this->telefono; }
-    public function getDomicilio() { return $this->domicilio; }
+    public function getNroDNI() { 
+        return $this->nroDNI; 
+    }
+
+    public function getNombre() { 
+        return $this->nombre; 
+    }
+
+    public function getApellido() {
+         return $this->apellido; 
+    }
+
+    public function getFechaNac() { 
+        return $this->fechaNac; 
+    }
+
+    public function getTelefono() {
+         return $this->telefono; 
+    }
+
+    public function getDomicilio() {
+         return $this->domicilio; 
+    }
 
     // Setters
-    public function setNroDNI($nroDNI) { $this->nroDNI = $nroDNI; }
-    public function setNombre($nombre) { $this->nombre = $nombre; }
-    public function setApellido($apellido) { $this->apellido = $apellido; }
-    public function setFechaNac($fechaNac) { $this->fechaNac = $fechaNac; }
-    public function setTelefono($telefono) { $this->telefono = $telefono; }
-    public function setDomicilio($domicilio) { $this->domicilio = $domicilio; }
+    public function setNroDNI($nroDNI) {
+        $this->nroDNI = $nroDNI; 
+    }
+
+    public function setNombre($nombre) {
+        $this->nombre = $nombre; 
+    }
+
+    public function setApellido($apellido) {
+        $this->apellido = $apellido; 
+    }
+
+    public function setFechaNac($fechaNac) {
+        $this->fechaNac = $fechaNac; 
+    }
+
+    public function setTelefono($telefono) {
+         $this->telefono = $telefono; 
+        }
+    public function setDomicilio($domicilio) {
+        $this->domicilio = $domicilio; 
+    }
 
     /*****************  CRUD  *****************/
 
