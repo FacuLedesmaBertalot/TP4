@@ -14,7 +14,7 @@
                 <h4 class="mb-0">Buscar Auto</h4>
             </div>
             <div class="card-body">
-                <form action="accionBuscarAuto.php" method="post" onsubmit="return validarFormulario();">
+                <form action="accionBuscarAuto.php" method="post" onsubmit="return validarFormularioPatente();">
                     <div class="mb-3">
                         <label for="patente" class="form-label">Número de Patente</label>
                         <input type="text" id="patente" name="patente" class="form-control" placeholder="Ej: ABC123" required>
