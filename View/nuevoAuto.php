@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuevo Auto</title>
-    <link rel="stylesheet" href="../Frameworks/bootstrap.min.css">
+    <link rel="stylesheet" href="Frameworks/bootstrap.min.css">
 </head>
 <body class="container mt-5">
     <h2 class="mb-4">Registrar Nuevo Auto</h2>

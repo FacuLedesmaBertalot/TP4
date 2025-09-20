@@ -1,4 +1,6 @@
 <?php
+include_once "../Models/Conector/BaseDatos.php";
+include_once "../Models/Auto.php";
 
 class AutoControl extends Auto {
 
