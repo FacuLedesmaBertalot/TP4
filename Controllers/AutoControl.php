@@ -116,7 +116,7 @@ class AutoControl extends Auto {
         
         if ($db->Ejecutar($sql) > 0) {
             $registro = $db->Registro();
-            $auto = new Auto();
+            $auto = new AutoControl();
             $auto->setPatente($registro['Patente']);
             $auto->setMarca($registro['Marca']);
             $auto->setModelo($registro['Modelo']);
@@ -138,7 +138,7 @@ class AutoControl extends Auto {
 
         if ($db->Ejecutar($sql) > 0) {
             while ($registro = $db->Registro()) {
-                $a = new Auto();
+                $a = new AutoControl();
                 $a->setPatente($registro['Patente']);
                 $a->setMarca($registro['Marca']);
                 $a->setModelo($registro['Modelo']);
@@ -147,6 +147,15 @@ class AutoControl extends Auto {
             }
         }
         return $autos;
+    }
+
+
+    // MÉTODO PARA CAMBIAR DE DUEÑO
+    public static function cambiarDuenio($patente, $nuevoDni) {
+
+    $db = new BaseDatos();
+    $sql = "UPDATE auto SET DniDuenio = '$nuevoDni' WHERE Patente = '$patente'";
+    return $db->Ejecutar($sql);
     }
     
 }
