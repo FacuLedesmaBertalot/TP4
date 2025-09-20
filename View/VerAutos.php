@@ -14,70 +14,47 @@ $autos = AutoControl::listarTodos();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver Autos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f8f9fa;
-        }
-        table {
-            border-collapse: collapse;
-            width: 90%;
-            margin: 20px auto;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            background-color: #fff;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px 15px;
-            text-align: left;
-        }
-        th {
-            background-color: #007bff;
-            color: #fff;
-        }
-        caption {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-        p {
-            text-align: center;
-            font-size: 1.2em;
-            margin-top: 50px;
-        }
-    </style>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="Frameworks/bootstrap.min.css">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-<?php if (!empty($autos)): ?>
-    <table>
-        <caption>Lista de Autos</caption>
-        <thead>
-            <tr>
-                <th>Patente</th>
-                <th>Marca</th>
-                <th>Modelo</th>
-                <th>DNI Dueño</th>
-                <th>Nombre Dueño</th>
-                <th>Apellido Dueño</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($autos as $auto): ?>
-                <tr>
-                    <td><?= htmlspecialchars($auto['Patente']) ?></td>
-                    <td><?= htmlspecialchars($auto['Marca']) ?></td>
-                    <td><?= htmlspecialchars($auto['Modelo']) ?></td>
-                    <td><?= htmlspecialchars($auto['DniDuenio']) ?></td>
-                    <td><?= htmlspecialchars($auto['Nombre']) ?></td>
-                    <td><?= htmlspecialchars($auto['Apellido']) ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-<?php else: ?>
-    <p>No hay autos cargados en la base de datos</p>
-<?php endif; ?>
+<div class="container my-5">
+    <?php if (!empty($autos)): ?>
+        <div class="table-responsive shadow-sm">
+            <table class="table table-striped table-bordered text-center align-middle">
+                <caption class="fs-4 mb-3">Lista de Autos</caption>
+                <thead class="table-primary">
+                    <tr>
+                        <th>Patente</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>DNI Dueño</th>
+                        <th>Nombre Dueño</th>
+                        <th>Apellido Dueño</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($autos as $auto): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($auto['Patente']) ?></td>
+                            <td><?= htmlspecialchars($auto['Marca']) ?></td>
+                            <td><?= htmlspecialchars($auto['Modelo']) ?></td>
+                            <td><?= htmlspecialchars($auto['DniDuenio']) ?></td>
+                            <td><?= htmlspecialchars($auto['Nombre']) ?></td>
+                            <td><?= htmlspecialchars($auto['Apellido']) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php else: ?>
+        <p class="text-center fs-5 mt-5">No hay autos cargados en la base de datos</p>
+    <?php endif; ?>
+</div>
 
+
+<?php include "./Structure/footer.php"; ?>
+<script src="../Frameworks/bootstrap.bundle.min.js"></script>
 </body>
 </html>
