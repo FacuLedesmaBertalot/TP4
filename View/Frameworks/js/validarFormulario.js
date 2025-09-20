@@ -18,64 +18,101 @@ function validarFormularioPatente() {
 }
 
 function validarFormularioPersona() {
-  let dni = document.getElementById("dni").value.trim();
-  let nombre = document.getElementById("nombre").value.trim();
-  let apellido = document.getElementById("apellido").value.trim();
-  let fechaNac = document.getElementById("fechaNac").value.trim();
-  let telefono = document.getElementById("telefono").value.trim();
-  let domicilio = document.getElementById("domicilio").value.trim();
+    let dni = document.getElementById("dni").value.trim();
+    let nombre = document.getElementById("nombre").value.trim();
+    let apellido = document.getElementById("apellido").value.trim();
+    let fechaNac = document.getElementById("fechaNac").value.trim();
+    let telefono = document.getElementById("telefono").value.trim();
+    let domicilio = document.getElementById("domicilio").value.trim();
 
-  let errores = [];
+    let errores = [];
+    let regexLetras = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
+    let bool = true;
 
-  // DNI
-  if (dni === "" || isNaN(dni)) {
-    errores.push("El DNI es obligatorio y debe ser Numérico");
-  }
+    if (dni === "" || isNaN(dni)) {
+        errores.push("El DNI es obligatorio y debe ser numérico.");
+        bool = false;
+    }
 
-  // Nombre
-  let regexLetras = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
-  if (nombre === "") {
-    errores.push("El Nombre es obligatorio.");
-  } else if (!regexLetras.test(nombre)) {
-    errores.push("El Nombre solo puede contener letras y espacios.");
-  }
+    if (nombre === "" || !regexLetras.test(nombre)) {
+        errores.push("El Nombre solo puede contener letras y espacios.");
+        bool = false;
+    }
 
-  // Apellido
-  if (apellido === "") {
-    errores.push("El Apellido es obligatorio.");
-  } else if (!regexLetras.test(apellido)) {
-    errores.push("El Apellido solo puede contener letras y espacios.");
-  }
+    if (apellido === "" || !regexLetras.test(apellido)) {
+        errores.push("El Apellido solo puede contener letras y espacios.");
+        bool = false;
+    }
 
-  // Fecha de Nacimiento
-  if (fechaNac === "") {
-    errores.push("Debe ingresar una fecha de nacimiento");
-  } else {
     let fecha = new Date(fechaNac);
     let hoy = new Date();
-
-    if (isNaN(fecha.getTime())) {
-      errores.push("La fecha de nacimiento no es válida.");
+    if (fechaNac === "" || isNaN(fecha.getTime())) {
+        errores.push("La fecha de nacimiento no es válida.");
+        bool = false;
     } else if (fecha > hoy) {
-      errores.push("La fecha de nacimiento no puede ser futura.");
+        errores.push("La fecha de nacimiento no puede ser futura.");
+        bool = false;
     }
-  }
 
-  // Teléfono
-  if (telefono === "" || isNaN(telefono)) {
-    errores.push("El Teléfono es obligatorio y debe ser numérico");
-  }
+    if (telefono === "" || isNaN(telefono)) {
+        errores.push("El Teléfono es obligatorio y debe ser numérico.");
+        bool = false;
+    }
 
-  // Domicilio
-  if (domicilio == "") {
-    errores.push("Debe ingresar un domicilio");
-  }
+    if (domicilio === "") {
+        errores.push("Debe ingresar un domicilio.");
+        bool = false;
+    }
 
-  // Muestra errores si los hay
-  if (errores.length > 0) {
-    alert(errores.join("\n"));
-    return false;
-  }
+    if (errores.length > 0) alert(errores.join("\n"));
 
-  return true;
+    return bool;
 }
+
+
+function validarFormularioAuto() {
+    let patente = document.getElementById("patente").value.trim();
+    let marca = document.getElementById("marca").value.trim();
+    let modelo = document.getElementById("modelo").value.trim();
+    let dniDuenio = document.getElementById("dniDuenio").value.trim();
+
+    let errores = [];
+    let bool = true; // inicializamos como verdadero
+
+    // Validar Patente: AAA111
+    let regexPatente = /^[A-Z]{3}[0-9]{3}$/i;
+    if (!regexPatente.test(patente)) {
+        errores.push("La patente debe tener formato AAA111.");
+        bool = false;
+    }
+
+    // Validar Marca
+    if (marca === "") {
+        errores.push("Debe ingresar una marca.");
+        bool = false;
+    }
+
+    // Validar Modelo
+    const anioModelo = parseInt(modelo);
+    const fechaActual = new Date();
+    const anioActual = fechaActual.getFullYear();
+    if (isNaN(anioModelo) || anioModelo < 1900 || anioModelo > anioActual) {
+        errores.push("El modelo debe ser de un año válido.");
+        bool = false;
+    }
+
+    // Validar DNI del dueño
+    let regexDNI = /^\d+$/;
+    if (!regexDNI.test(dniDuenio)) {
+        errores.push("El DNI del dueño debe contener solo números.");
+        bool = false;
+    }
+
+    // Mostrar errores si los hay
+    if (errores.length > 0) {
+        alert(errores.join("\n"));
+    }
+
+    return bool;
+}
+
