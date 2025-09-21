@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="Frameworks/bootstrap.min.css">
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
+
+    <?php require "../View/Structure/header.php" ?>
+
     <div class="container mt-5">
         <h2>Cambio de Dueño de Auto</h2>
         <form action="accionCambioDuenio.php" method="post" onsubmit="return validarFormularioCambio()">
@@ -24,8 +27,12 @@
         </form>
     </div>
 
+    <?php require "../View/Structure/footer.php" ?>
+
     <script src="Frameworks/bootstrap.bundle.min.js"></script>
     <script src="Frameworks/js/validarFormulario.js"></script>
+
+    
 </body>
 
 </html>
