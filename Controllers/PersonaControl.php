@@ -114,7 +114,7 @@ class PersonaControl extends Persona {
 
         if ($db->Ejecutar($sql) > 0) {
             $registro = $db->Registro();
-            $p = new Persona();
+            $p = new PersonaControl();
             $p->setNroDNI($registro['NroDni']);
             $p->setApellido($registro['Apellido']);
             $p->setNombre($registro['Nombre']);
