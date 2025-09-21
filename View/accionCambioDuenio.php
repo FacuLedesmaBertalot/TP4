@@ -1,54 +1,72 @@
 <?php
-
 require_once "../Utils/funciones.php";
 require_once "../Controllers/AutoControl.php";
 require_once "../Controllers/PersonaControl.php";
 
+// Recibir datos del formulario usando dataSubmited
 $datos = dataSubmited();
+$patente = isset($datos['patente']) ? trim($datos['patente']) : '';
+$dniNuevoDuenio = isset($datos['dniDuenio']) ? trim($datos['dniDuenio']) : '';
 
-$patente = $datos['patente'];
-$dniNuevoDuenio = $datos['dniDuenio'];
+$resultado = [];
 
-// Verifica si el auto existe
-$auto = AutoControl::buscarPorPatente($patente);
-
-if (!$auto) {
-    echo "<div class='container mt-5'>
-            <div class='alert alert-danger'>
-                No existe ningún auto con la patente <strong>$patente</strong>.
-            </div>
-            <a href='CambioDuenio.php' class='btn btn-secondary mt-2'>Volver</a>
-          </div>";
-    exit;
+// Validaciones del lado servidor
+if (empty($patente) || !preg_match("/^[A-Z]{3}\s\d{3}$/i", $patente)) {
+    $resultado['error'][] = "Formato de patente inválido. Ej: ABC 123.";
 }
 
-// Verifica si la persona existe
-$persona = PersonaControl::buscarPorDni($dniNuevoDuenio);
-
-if (!$persona) {
-    echo "<div class='container mt-5'>
-            <div class='alert alert-danger'>
-                No existe ninguna persona con DNI <strong>$dniNuevoDuenio</strong>.
-                <br><a href='NuevaPersona.php' class='btn btn-sm btn-primary mt-2'>Registrar nueva persona</a>
-            </div>
-          </div>";
-    exit;
+if (empty($dniNuevoDuenio) || !preg_match("/^\d+$/", $dniNuevoDuenio)) {
+    $resultado['error'][] = "El DNI del nuevo dueño es obligatorio y debe ser numérico.";
 }
 
-// Cambia de Dueño
-$auto->setDniDuenio($dniNuevoDuenio);
-$resultado = AutoControl::cambiarDuenio($patente, $dniNuevoDuenio);
+// Si no hay errores, intentar cambiar dueño
+if (empty($resultado['error'])) {
+    $cambio = AutoControl::cambiarDuenio($patente, $dniNuevoDuenio);
 
-
-echo "<div class='container mt-5'>";
-if (is_array($resultado) && isset($resultado['error'])) {
-    echo "<div class='alert alert-danger'><strong>Error:</strong><br>" . implode("<br>", $resultado['error']) . "</div>";
-} elseif ($resultado) {
-    echo "<div class='alert alert-success'>El dueño del auto con patente <strong>$patente</strong> se actualizó correctamente.</div>";
-} else {
-    echo "<div class='alert alert-danger'>No se pudo cambiar el dueño del auto.</div>";
+    if ($cambio) {
+        $resultado['exito'] = "El dueño del auto con patente <strong>$patente</strong> se ha cambiado correctamente.";
+    } else {
+        $resultado['error'][] = "No se pudo cambiar el dueño. Verifique que la patente exista.";
+    }
 }
-echo "<a href='CambioDuenio.php' class='btn btn-secondary mt-3'>Volver</a>";
-echo "</div>";
-
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado Cambio de Dueño</title>
+    <link rel="stylesheet" href="Frameworks/bootstrap.min.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <?php require "../View/Structure/header.php"; ?>
+
+    <div class="container mt-5">
+        <h2>Cambio de Dueño de Auto</h2>
+
+        <?php if (isset($resultado['error'])): ?>
+            <div class="alert alert-danger" role="alert">
+                <ul class="mb-0">
+                    <?php foreach ($resultado['error'] as $error): ?>
+                        <li><?= htmlspecialchars($error) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($resultado['exito'])): ?>
+            <div class="alert alert-success" role="alert">
+                <?= $resultado['exito'] ?>
+            </div>
+        <?php endif; ?>
+
+        <a href="CambioDuenio.php" class="btn btn-primary mt-3">Volver</a>
+    </div>
+
+    <?php require "../View/Structure/footer.php"; ?>
+    
+    <script src="Frameworks/bootstrap.bundle.min.js"></script>
+</body>
+</html>
