@@ -7,19 +7,21 @@ function esSoloLetras(valor) {
   return /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/.test(valor);
 }
 
+// ✅ Patente en formato ABC 123
 function esPatenteValida(patente) {
-  return /^[A-Z]{3}[0-9]{3}$/i.test(patente);
+  return /^[A-Z]{3}\s[0-9]{3}$/i.test(patente);
 }
 
 function mostrarErrores(errores) {
-    $bool = true;
+  let valido = true;
   if (errores.length > 0) {
     alert(errores.join("\n"));
-    $bool = false;
+    valido = false;
   }
-  return $bool;
+  return valido;
 }
 
+// ===== Formularios =====
 
 function validarFormularioPatente() {
   let patente = document.getElementById("patente").value.trim();
@@ -28,7 +30,7 @@ function validarFormularioPatente() {
   if (patente === "") {
     errores.push("Debe ingresar una patente.");
   } else if (!esPatenteValida(patente)) {
-    errores.push("Formato de patente inválido. Ej: ABC123.");
+    errores.push("Formato de patente inválido. Ej: ABC 123.");
   }
 
   return mostrarErrores(errores);
@@ -68,7 +70,7 @@ function validarFormularioAuto() {
   let errores = [];
   let anioActual = new Date().getFullYear();
 
-  if (!esPatenteValida(patente)) errores.push("La patente debe tener formato AAA111.");
+  if (!esPatenteValida(patente)) errores.push("La patente debe tener formato ABC 123.");
   if (!marca) errores.push("Debe ingresar una marca.");
 
   const anioModelo = parseInt(modelo);
@@ -86,8 +88,9 @@ function validarFormularioCambio() {
   let dni = document.getElementById("dniDuenio").value.trim();
   let errores = [];
 
-  if (!esPatenteValida(patente)) errores.push("Formato de patente inválido. Ej: ABC123.");
+  if (!esPatenteValida(patente)) errores.push("Formato de patente inválido. Ej: ABC 123.");
   if (!dni || !esNumerico(dni)) errores.push("El DNI del nuevo dueño es obligatorio y debe ser numérico.");
 
   return mostrarErrores(errores);
 }
+
