@@ -12,7 +12,7 @@ if (!$persona) {
             <div class='alert alert-danger'>
                 No se encontró ninguna persona con DNI <strong>$dni</strong>.
             </div>
-            <a href='BuscarPersona.html' class='btn btn-secondary mt-2'>Volver</a>
+            <a href='BuscarPersona.php' class='btn btn-secondary mt-2'>Volver</a>
           </div>";
     exit;
 }
