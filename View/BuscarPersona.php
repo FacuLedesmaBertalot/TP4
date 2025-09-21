@@ -18,7 +18,7 @@
                 <label for="dni" class="form-label">Número de Documento:</label>
                 <input type="text" name="dni" id="dni" class="form-control" required>
             </div>
-            <button type="submit" class="btn brn-primary">Buscar</button>
+            <button type="submit" class="btn btn-primary">Buscar</button>
         </form>
 
     </div>
