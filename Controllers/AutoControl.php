@@ -10,8 +10,8 @@ class AutoControl extends Auto {
         // Validar Patente
         if (empty($this->getPatente())) {
             $errores[] = "La Patente no Puede Estar Vacía";
-        } elseif (!preg_match("/^[A-Z]{3}\s?\d{3}$/", $this->getPatente())) {
-            $errores[] = "La patente debe tener formato AAA 111";
+        } elseif (!preg_match("/^[A-Z]{3}\s[0-9]{3}$/", $this->getPatente())) {
+            $errores[] = "La patente debe tener formato ABC 123";
         }
 
         // Validar Marca
@@ -19,9 +19,10 @@ class AutoControl extends Auto {
             $errores[] = "La Patente no Puede Estar Vacía";
         }
 
-        // Validar Modelo
-        if (!is_numeric($this->getModelo()) || $this->getModelo() <= 0) {
-            $errores[] = "El Modelo Debe ser un Número Positivo";
+        // Modelo: debe ser un año válido
+        $anioActual = date("Y");
+        if (!is_numeric($this->getModelo()) || $this->getModelo() < 1900 || $this->getModelo() > $anioActual) {
+            $errores[] = "El modelo debe ser un año válido entre 1900 y $anioActual.";
         }
 
         // Validar DNI del dueño (solo números)
@@ -31,6 +32,9 @@ class AutoControl extends Auto {
 
         return $errores;
     }
+
+
+    // ========= CRUD con control =========
 
     // INSERT
     public function insertarControl() {
