@@ -9,7 +9,7 @@ class Persona {
     private $domicilio;
 
     // Constructor
-    public function __construct($nroDNI = null, $nombre = null, $apellido = null, $fechaNac = null, $telefono = null, $domicilio = null)
+    public function __construct($nroDNI = "", $nombre = "", $apellido = "", $fechaNac = "", $telefono = "", $domicilio = "")
     {
         $this->nroDNI = $nroDNI;
         $this->nombre = $nombre;
