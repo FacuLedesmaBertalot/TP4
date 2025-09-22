@@ -13,35 +13,52 @@ $domicilio = trim($datos['domicilio']);
 
 $persona = PersonaControl::buscarPorDni($dni);
 
-if (!$persona) {
-    echo "<div class='container mt-5'>
-            <div class='alert alert-danger'>
-                No se encontró la persona con DNI <strong>$dni</strong>.
-            </div>
-            <a href='BuscarPersona.html' class='btn btn-secondary mt-2'>Volver</a>
-          </div>";
-    exit;
+if ($persona) {
+    $persona->setNombre($nombre);
+    $persona->setApellido($apellido);
+    $persona->setFechaNac($fechaNac);
+    $persona->setTelefono($telefono);
+    $persona->setDomicilio($domicilio);
+
+    $resultado = $persona->modificarControl();
 }
-
-$persona->setNombre($nombre);
-$persona->setApellido($apellido);
-$persona->setFechaNac($fechaNac);
-$persona->setTelefono($telefono);
-$persona->setDomicilio($domicilio);
-
-$resultado = $persona->modificarControl();
 ?>
 
-<div class='container mt-5'>
-    <?php if (is_array($resultado) && isset($resultado['error'])): ?>
-        <div class='alert alert-danger'>
-            <strong>Error:</strong><br>
-            <?= implode("<br>", $resultado['error']); ?>
-        </div>
-    <?php else: ?>
-        <div class='alert alert-success'>
-            Datos de la persona actualizados correctamente.
-        </div>
-    <?php endif; ?>
-    <a href='BuscarPersona.php' class='btn btn-secondary mt-3'>Volver</a>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado Actualización</title>
+    <link rel="stylesheet" href="Frameworks/bootstrap.min.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <?php require "../View/Structure/header.php"; ?>
+
+    <div class="container mt-5">
+        <?php if (!$persona): ?>
+            <div class="alert alert-danger">
+                No se encontró la persona con DNI <strong><?= htmlspecialchars($dni) ?></strong>.
+            </div>
+            <a href="BuscarPersona.php" class="btn btn-secondary mt-3">Volver</a>
+        <?php elseif (is_array($resultado) && isset($resultado['error'])): ?>
+            <div class="alert alert-danger">
+                <strong>Error:</strong><br>
+                <?= implode("<br>", $resultado['error']); ?>
+            </div>
+            <a href="BuscarPersona.php" class="btn btn-secondary mt-3">Volver</a>
+        <?php else: ?>
+            <div class="alert alert-success">
+                Datos de la persona actualizados correctamente.
+            </div>
+            <a href="BuscarPersona.php" class="btn btn-success mt-3">Volver a Buscar</a>
+        <?php endif; ?>
+    </div>
+
+    <?php require "../View/Structure/footer.php"; ?>
+
+    <script src="Frameworks/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
