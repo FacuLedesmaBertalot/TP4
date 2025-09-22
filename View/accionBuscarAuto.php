@@ -8,7 +8,6 @@ $patente = strtoupper(trim($_POST['patente']));
 // Verifica si la patente tiene el formato AAA111 sin espacio
 if (preg_match('/^[A-Z]{3}\d{3}$/', $patente)) {
     $patente = substr($patente, 0, 3) . ' ' . substr($patente, 3, 3);
-
 }
 
 $auto = null;
@@ -27,7 +26,11 @@ if (!empty($patente)) {
     <title>Resultado Búsqueda</title>
     <link rel="stylesheet" href="Frameworks/bootstrap.min.css">
 </head>
-<body>
+
+<body class="d-flex flex-column min-vh-100">
+
+    <?php require "../View/Structure/header.php" ?>
+    
     <div class="container mt-5">
 
         <?php if ($auto) { ?>
@@ -67,6 +70,9 @@ if (!empty($patente)) {
         </div>
     </div>
 
+        <?php require "../View/Structure/footer.php"?>
+
     <script src="Frameworks/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
