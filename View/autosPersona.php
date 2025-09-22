@@ -31,7 +31,9 @@ $autos = AutoControl::listarPorDni($dni);
     <title>Autos de Persona</title>
     <link rel="stylesheet" href="Frameworks/bootstrap.min.css">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
+
+    <?php require "../View/Structure/header.php" ?>
 <div class="container mt-5">
     <h1 class="mb-4">Autos de Persona</h1>
 
@@ -79,6 +81,9 @@ $autos = AutoControl::listarPorDni($dni);
         <a href="../View/listarPersonas.php" class="btn btn-secondary mt-3">Volver al listado</a>
     <?php endif; ?>
 </div>
+
+
+    <?php require "../View/Structure/footer.php" ?>
 
 <script src="Frameworks/bootstrap.bundle.min.js"></script>
 </body>
