@@ -19,42 +19,57 @@ $autos = AutoControl::listarTodos();
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-<div class="container my-5">
-    <?php if (!empty($autos)): ?>
-        <div class="table-responsive shadow-sm">
-            <table class="table table-striped table-bordered text-center align-middle">
-                <caption class="fs-4 mb-3">Lista de Autos</caption>
-                <thead class="table-primary">
-                    <tr>
-                        <th>Patente</th>
-                        <th>Marca</th>
-                        <th>Modelo</th>
-                        <th>DNI Dueño</th>
-                        <th>Nombre Dueño</th>
-                        <th>Apellido Dueño</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($autos as $auto): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($auto['Patente']) ?></td>
-                            <td><?= htmlspecialchars($auto['Marca']) ?></td>
-                            <td><?= htmlspecialchars($auto['Modelo']) ?></td>
-                            <td><?= htmlspecialchars($auto['DniDuenio']) ?></td>
-                            <td><?= htmlspecialchars($auto['Nombre']) ?></td>
-                            <td><?= htmlspecialchars($auto['Apellido']) ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+    <?php require "../View/Structure/header.php"; ?>
+
+    <div class="container my-5">
+        <?php if (!empty($autos)): ?>
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white fs-5">
+                    Lista de Autos
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered text-center align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Patente</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>DNI Dueño</th>
+                                    <th>Nombre Dueño</th>
+                                    <th>Apellido Dueño</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($autos as $auto): ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($auto['Patente']) ?></td>
+                                        <td><?= htmlspecialchars($auto['Marca']) ?></td>
+                                        <td><?= htmlspecialchars($auto['Modelo']) ?></td>
+                                        <td><?= htmlspecialchars($auto['DniDuenio']) ?></td>
+                                        <td><?= htmlspecialchars($auto['Nombre']) ?></td>
+                                        <td><?= htmlspecialchars($auto['Apellido']) ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="alert alert-warning text-center shadow-sm">
+                <strong>No hay autos cargados</strong> en la base de datos.
+            </div>
+        <?php endif; ?>
+
+        <div class="text-center mt-4">
+            <a href="index.php" class="btn btn-secondary">Volver al Inicio</a>
         </div>
-    <?php else: ?>
-        <p class="text-center fs-5 mt-5">No hay autos cargados en la base de datos</p>
-    <?php endif; ?>
-</div>
+    </div>
 
+    <?php require "../View/Structure/footer.php"; ?>
 
-<?php include "./Structure/footer.php"; ?>
-<script src="../Frameworks/bootstrap.bundle.min.js"></script>
+    <script src="../Frameworks/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
