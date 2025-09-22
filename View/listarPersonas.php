@@ -17,7 +17,9 @@ $personas = PersonaControl::listarTodos();
     <link rel="stylesheet" href="Frameworks/bootstrap.min.css">
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
+
+    <?php require "../View/Structure/header.php" ?>
     <div class="container mt-5">
         <h1 class="mb-4">Listado de Personas</h1>
 
@@ -58,6 +60,9 @@ $personas = PersonaControl::listarTodos();
 
         <?php endif; ?>
     </div>
+
+
+    <?php require "../View/Structure/footer.php" ?>
 
 
     <script src="Frameworks/bootstrap.bundle.min.js"></script>
