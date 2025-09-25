@@ -57,13 +57,14 @@ $personas = PersonaControl::listarTodos();
                     <?php endforeach; ?>
                 </tbody>
             </table>
-
         <?php endif; ?>
+
+        <div class="text-center mt-4">
+            <a href="../index.php" class="btn btn-primary">Volver</a>
+        </div>
     </div>
 
-
     <?php require "../View/Structure/footer.php" ?>
-
 
     <script src="Frameworks/bootstrap.bundle.min.js"></script>
 
