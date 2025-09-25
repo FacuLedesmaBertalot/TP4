@@ -53,7 +53,7 @@ $datos = dataSubmited();
             echo "<div class='alert alert-danger'>No se pudo registrar el auto.</div>";
         }
 
-        echo "<a href='listarPersonas.php' class='btn btn-secondary mt-3'>Volver</a>";
+        echo "<a href='nuevoAuto.php' class='btn btn-secondary mt-3'>Volver</a>";
         ?>
 
     </div>

@@ -111,7 +111,7 @@ function validarFormularioAuto() {
 
     if (!esPatenteValida(patente)) { mostrarError("patente", "La patente debe tener formato ABC 123."); errores = true; }
     if (!marca) { mostrarError("marca", "Debe ingresar una marca."); errores = true; }
-    if (isNaN(anioModelo) || anioModelo < 1900 || anioModelo > anioActual) { mostrarError("modelo", "El modelo debe ser un año válido."); errores = true; }
+    if (isNaN(anioModelo) || anioModelo < 0 || anioModelo > anioActual) { mostrarError("modelo", "El modelo debe ser un año válido."); errores = true; }
     if (!dniDuenio || !esNumerico(dniDuenio)) { mostrarError("dniDuenio", "El DNI del dueño debe contener solo números."); errores = true; }
 
     return !errores;

@@ -29,7 +29,7 @@
 
             <div class="mb-3">
                 <label for="modelo" class="form-label">Modelo (Año)</label>
-                <input type="number" class="form-control" id="modelo" name="modelo" min="1900" max="2099" required>
+                <input type="number" class="form-control" id="modelo" name="modelo" required>
             </div>
 
             <div class="mb-3">

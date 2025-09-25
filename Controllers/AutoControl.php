@@ -7,37 +7,60 @@ class AutoControl extends Auto {
     private function validarDatos() {
         $errores = [];
 
-        // Validar Patente
+        // ===== Validar Patente =====
         if (empty($this->getPatente())) {
-            $errores[] = "La Patente no Puede Estar Vacía";
+            $errores[] = "La patente no puede estar vacía.";
+
         } elseif (!preg_match("/^[A-Z]{3}\s[0-9]{3}$/", $this->getPatente())) {
-            $errores[] = "La patente debe tener formato ABC 123";
+            $errores[] = "La patente debe tener formato AAA 111.";
+
+        } else {
+            $db = new BaseDatos();
+            $patente = $this->getPatente();
+            $sql = "SELECT * FROM auto WHERE Patente = '$patente'";
+            if ($db->Ejecutar($sql) > 0) {
+                $errores[] = "La patente ya existe en el sistema.";
+            }
         }
 
-        // Validar Marca
+        // ===== Validar Marca =====
         if (empty($this->getMarca())) {
-            $errores[] = "La Patente no Puede Estar Vacía";
+            $errores[] = "La marca no puede estar vacía.";
+
+        } elseif (!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s\-]+$/", $this->getMarca())) {
+            $errores[] = "La marca solo puede contener letras y espacios.";
         }
 
-        // Modelo: debe ser un año válido
-        $anioActual = date("Y");
-        if (!is_numeric($this->getModelo()) || $this->getModelo() < 1900 || $this->getModelo() > $anioActual) {
-            $errores[] = "El modelo debe ser un año válido entre 1900 y $anioActual.";
+        // ===== Validar Modelo =====
+        $modelo = $this->getModelo();
+
+        if (!is_numeric($modelo) || $modelo <= 0) {
+            $errores[] = "El modelo debe ser un número positivo.";
         }
 
-        // Validar DNI del dueño (solo números)
+        // ===== Validar DNI del dueño =====
         if (!preg_match("/^\d+$/", $this->getDniDuenio())) {
             $errores[] = "El DNI del dueño debe contener solo números.";
+        } else {
+            // Verificar si existe el dueño en la BD
+            $db = new BaseDatos();
+            $dni = $this->getDniDuenio();
+            $sql = "SELECT * FROM persona WHERE NroDni = '$dni'";
+            if ($db->Ejecutar($sql) == 0) {
+                $errores[] = "El DNI del dueño no existe en el sistema.";
+            }
         }
 
         return $errores;
     }
 
 
+
     // ========= CRUD con control =========
 
     // INSERT
-    public function insertarControl() {
+    public function insertarControl()
+    {
         $resultado = null;
         $errores = $this->validarDatos();
 
@@ -51,7 +74,8 @@ class AutoControl extends Auto {
     }
 
     // MODIFICAR
-    public function modificarControl() {
+    public function modificarControl()
+    {
         $errores = $this->validarDatos();
         $resultado = null;
 
@@ -65,7 +89,8 @@ class AutoControl extends Auto {
     }
 
     // ELIMINAR
-    public function eliminarControl() {
+    public function eliminarControl()
+    {
         $resultado = null;
 
         if (empty($this->getPatente())) {
@@ -78,7 +103,8 @@ class AutoControl extends Auto {
     }
 
     // BUSCAR
-    public function buscarControl($patente) {
+    public function buscarControl($patente)
+    {
         $resultado = null;
 
         if (empty($patente)) {
@@ -92,7 +118,8 @@ class AutoControl extends Auto {
 
 
     // MÉTODO PARA OBTENER TODOS LOS AUTOS
-    public static function listarTodos() {
+    public static function listarTodos()
+    {
         $base = new BaseDatos();
         $sql = "SELECT a.Patente, a.Marca, a.Modelo, a.DniDuenio, p.Nombre, p.Apellido
                 FROM auto a 
@@ -111,13 +138,14 @@ class AutoControl extends Auto {
 
 
     // MÉTODO PARA BUSCAR POR PATENTE
-    public static function buscarPorPatente($patente) {
+    public static function buscarPorPatente($patente)
+    {
         $db = new BaseDatos();
         $sql = "SELECT * 
                 FROM auto
                 WHERE Patente = '$patente'";
         $resultado = null;
-        
+
         if ($db->Ejecutar($sql) > 0) {
             $registro = $db->Registro();
             $auto = new AutoControl();
@@ -132,7 +160,8 @@ class AutoControl extends Auto {
 
 
     // LISTAR AUTOS POR DNI DEL DUEÑO
-    public static function listarPorDni($dni) {
+    public static function listarPorDni($dni)
+    {
         $db = new BaseDatos();
         $autos = [];
 
@@ -155,13 +184,11 @@ class AutoControl extends Auto {
 
 
     // MÉTODO PARA CAMBIAR DE DUEÑO
-    public static function cambiarDuenio($patente, $nuevoDni) {
+    public static function cambiarDuenio($patente, $nuevoDni)
+    {
 
-    $db = new BaseDatos();
-    $sql = "UPDATE auto SET DniDuenio = '$nuevoDni' WHERE Patente = '$patente'";
-    return $db->Ejecutar($sql);
+        $db = new BaseDatos();
+        $sql = "UPDATE auto SET DniDuenio = '$nuevoDni' WHERE Patente = '$patente'";
+        return $db->Ejecutar($sql);
     }
-    
 }
-
-?>
