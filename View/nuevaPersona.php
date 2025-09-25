@@ -50,8 +50,9 @@
                                 <input type="text" name="domicilio" id="domicilio" class="form-control" required>
                             </div>
 
-                            <div class="d-grid">
+                            <div class="d-flex justify-content-start gap-2">
                                 <button type="submit" class="btn btn-success">Guardar Persona</button>
+                                <a href="../index.php" class="btn btn-success">Volver</a>
                             </div>
                         </form>
                     </div>
@@ -66,3 +67,4 @@
     <script src="Frameworks/js/validarFormulario.js"></script>
 </body>
 </html>
+
