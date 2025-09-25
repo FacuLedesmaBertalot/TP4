@@ -39,7 +39,7 @@
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title text-primary">Nueva Persona</h5>
                         <p class="card-text">Agrega una nueva persona al sistema completando el formulario.</p>
-                        <a href="nuevaPersona.php" class="btn btn-primary mt-auto">Ir</a>
+                        <a href="View/nuevaPersona.php" class="btn btn-primary mt-auto">Ir</a>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title text-primary">Nuevo Auto</h5>
                         <p class="card-text">Registra un nuevo auto y asígnale un dueño.</p>
-                        <a href="nuevoAuto.php" class="btn btn-primary mt-auto">Ir</a>
+                        <a href="View/nuevoAuto.php" class="btn btn-primary mt-auto">Ir</a>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title text-primary">Cambio de Dueño</h5>
                         <p class="card-text">Realiza la transferencia de un auto a un nuevo propietario.</p>
-                        <a href="cambioDuenio.php" class="btn btn-primary mt-auto">Ir</a>
+                        <a href="View/cambioDuenio.php" class="btn btn-primary mt-auto">Ir</a>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title text-primary">Buscar Persona</h5>
                         <p class="card-text">Busca una persona específica por DNI y gestiona sus datos.</p>
-                        <a href="buscarPersona.php" class="btn btn-primary mt-auto">Ir</a>
+                        <a href="View/buscarPersona.php" class="btn btn-primary mt-auto">Ir</a>
                     </div>
                 </div>
             </div>
