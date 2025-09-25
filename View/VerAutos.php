@@ -63,7 +63,7 @@ $autos = AutoControl::listarTodos();
         <?php endif; ?>
 
         <div class="text-center mt-4">
-            <a href="index.php" class="btn btn-secondary">Volver al Inicio</a>
+            <a href="../index.php" class="btn btn-secondary">Volver al Inicio</a>
         </div>
     </div>
 
