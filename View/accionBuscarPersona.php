@@ -28,7 +28,7 @@ $persona = PersonaControl::buscarPorDni($dni);
             <a href="BuscarPersona.php" class="btn btn-secondary mt-2">Volver</a>
         <?php else: ?>
             <h2>Actualizar Datos de Persona</h2>
-            <form action="ActualizarDatosPersona.php" method="post" onsubmit="return validarFormularioPersona()">
+            <form action="actualizarDatosPersona.php" method="post" onsubmit="return validarFormularioPersona()">
                 <input type="hidden" name="dni" value="<?= $persona->getNroDNI(); ?>">
 
                 <div class="mb-3">
