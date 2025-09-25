@@ -28,7 +28,7 @@
                 <div class="card h-100 shadow-sm border-primary">
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title text-primary">Listar Personas</h5>
-                        <p class="card-text">Visualiza todas las personas registradas en el sistema.</p>
+                        <p class="card-text">Visualiza todas las personas registradas en el sistema, a su vez los autos que tiene en posesión.</p>
                         <a href="View/listarPersonas.php" class="btn btn-primary mt-auto">Ir</a>
                     </div>
                 </div>
