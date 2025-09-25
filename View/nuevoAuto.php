@@ -38,7 +38,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Guardar Auto</button>
-            <a href="listarPersonas.php" class="btn btn-secondary">Volver</a>
+            <a href="../index.php" class="btn btn-secondary">Volver</a>
         </form>
 
     </div>
