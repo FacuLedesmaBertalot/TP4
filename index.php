@@ -29,7 +29,7 @@
                     <div class="card-body d-flex flex-column text-center">
                         <h5 class="card-title text-primary">Listar Personas</h5>
                         <p class="card-text">Visualiza todas las personas registradas en el sistema.</p>
-                        <a href="listarPersonas.php" class="btn btn-primary mt-auto">Ir</a>
+                        <a href="View/listarPersonas.php" class="btn btn-primary mt-auto">Ir</a>
                     </div>
                 </div>
             </div>
