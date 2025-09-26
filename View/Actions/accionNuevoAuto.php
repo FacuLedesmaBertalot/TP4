@@ -1,7 +1,7 @@
 <?php
-require_once "../Utils/funciones.php";
-require_once "../Controllers/PersonaControl.php";
-require_once "../Controllers/AutoControl.php";
+require_once "../../Utils/funciones.php";
+require_once "../../Controllers/PersonaControl.php";
+require_once "../../Controllers/AutoControl.php";
 
 $datos = dataSubmited();
 ?>
@@ -13,12 +13,12 @@ $datos = dataSubmited();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultado Registro Auto</title>
-    <link rel="stylesheet" href="Frameworks/bootstrap.min.css">
+    <link rel="stylesheet" href="../Frameworks/bootstrap.min.css">
 </head>
 
 <body class="d-flex flex-column min-vh-100">
 
-    <?php require "../View/Structure/header.php"; ?>
+    <?php require "../../View/Structure/header.php"; ?>
 
     <div class="container mt-5">
 
@@ -28,40 +28,41 @@ $datos = dataSubmited();
 
         if (!$persona) {
             echo "<div class='alert alert-danger'>
-            No existe una persona con DNI <strong>{$datos['dniDuenio']}</strong>.<br>
-            <a href='NuevaPersona.php' class='btn btn-sm btn-primary mt-2'>Registrar nueva persona</a>
-          </div>";
-            exit;
-        }
-
-        // Registrar el auto
-        $auto = new AutoControl();
-        $auto->setPatente($datos['patente']);
-        $auto->setMarca($datos['marca']);
-        $auto->setModelo($datos['modelo']);
-        $auto->setDniDuenio($datos['dniDuenio']);
-
-        $resultado = $auto->insertarControl();
-
-        if (is_array($resultado) && isset($resultado['error'])) {
-            echo "<div class='alert alert-danger'>
-            <strong>Error:</strong><br>" . implode("<br>", $resultado['error']) . "
-          </div>";
-        } elseif ($resultado) {
-            echo "<div class='alert alert-success'>Auto registrado correctamente.</div>";
+                No existe una persona con DNI <strong>{$datos['dniDuenio']}</strong>.<br>
+                <a href='../nuevaPersona.php' class='btn btn-sm btn-primary mt-2'>Registrar nueva persona</a>
+              </div>";
         } else {
-            echo "<div class='alert alert-danger'>No se pudo registrar el auto.</div>";
+            // Registrar el auto
+            $auto = new AutoControl();
+            $auto->setPatente($datos['patente']);
+            $auto->setMarca($datos['marca']);
+            $auto->setModelo($datos['modelo']);
+            $auto->setDniDuenio($datos['dniDuenio']);
+
+            $resultado = $auto->insertarControl();
+
+            if (is_array($resultado) && isset($resultado['error'])) {
+                echo "<div class='alert alert-danger'>
+                    <strong>Error:</strong><br>" . implode("<br>", $resultado['error']) . "
+                  </div>";
+            } elseif ($resultado) {
+                echo "<div class='alert alert-success'>Auto registrado correctamente.</div>";
+            } else {
+                echo "<div class='alert alert-danger'>No se pudo registrar el auto.</div>";
+            }
         }
 
-        echo "<a href='nuevoAuto.php' class='btn btn-secondary mt-3'>Volver</a>";
+        echo "<a href='../nuevoAuto.php' class='btn btn-secondary mt-3'>Volver</a>";
         ?>
 
     </div>
-    <script src="Frameworks/bootstrap.bundle.min.js"></script>
-    <script src="Frameworks/js/validarFormulario.js"></script>
+
+    <?php require "../../View/Structure/footer.php"; ?>
 
 
-    <?php require "../View/Structure/footer.php"; ?>
+    <script src="../Frameworks/bootstrap.bundle.min.js"></script>
+    <script src="../Frameworks/js/validarFormulario.js"></script>
+
+
 </body>
-
 </html>
