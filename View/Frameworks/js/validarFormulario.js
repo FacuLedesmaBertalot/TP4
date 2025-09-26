@@ -95,24 +95,33 @@ function validarFormularioPersona() {
 
 // Validar formulario de Auto
 function validarFormularioAuto() {
+    limpiarErrores("formNuevoAuto");
+
     let patente = document.getElementById("patente").value.trim();
     let marca = document.getElementById("marca").value.trim();
     let modelo = document.getElementById("modelo").value.trim();
     let dniDuenio = document.getElementById("dniDuenio").value.trim();
 
     let errores = false;
-    mostrarError("patente", "");
-    mostrarError("marca", "");
-    mostrarError("modelo", "");
-    mostrarError("dniDuenio", "");
-
     const anioActual = new Date().getFullYear();
     const anioModelo = parseInt(modelo);
 
-    if (!esPatenteValida(patente)) { mostrarError("patente", "La patente debe tener formato ABC 123."); errores = true; }
-    if (!marca) { mostrarError("marca", "Debe ingresar una marca."); errores = true; }
-    if (isNaN(anioModelo) || anioModelo < 0 || anioModelo > anioActual) { mostrarError("modelo", "El modelo debe ser un año válido."); errores = true; }
-    if (!dniDuenio || !esNumerico(dniDuenio)) { mostrarError("dniDuenio", "El DNI del dueño debe contener solo números."); errores = true; }
+    if (!esPatenteValida(patente)) {
+        mostrarError("patente", "La patente debe tener formato ABC 123.");
+        errores = true;
+    }
+    if (!marca) {
+        mostrarError("marca", "Debe ingresar una marca.");
+        errores = true;
+    }
+    if (isNaN(anioModelo) || anioModelo < 0 || anioModelo > anioActual) {
+        mostrarError("modelo", "El modelo debe ser un año válido.");
+        errores = true;
+    }
+    if (!dniDuenio || !esNumerico(dniDuenio)) {
+        mostrarError("dniDuenio", "El DNI del dueño debe contener solo números.");
+        errores = true;
+    }
 
     return !errores;
 }

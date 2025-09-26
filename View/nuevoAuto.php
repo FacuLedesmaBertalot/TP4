@@ -15,7 +15,7 @@
     <div class="container mb-5">
         <h2 class="mb-4">Registrar Nuevo Auto</h2>
 
-        <form action="accionNuevoAuto.php" method="post" onsubmit="return validarFormularioAuto()" class="border p-4 rounded shadow">
+        <form id="formNuevoAuto" action="./Actions/accionNuevoAuto.php" method="post" onsubmit="return validarFormularioAuto()" class="border p-4 rounded shadow">
 
             <div class="mb-3">
                 <label for="patente" class="form-label">Patente</label>
@@ -46,8 +46,8 @@
 
     <?php require "../View/Structure/footer.php" ?>
 
-    <script src="../Frameworks/bootstrap.bundle.min.js"></script>
-    <script src="../Frameworks/js/validarFormulario.js"></script>
+    <script src="Frameworks/bootstrap.bundle.min.js"></script>
+    <script src="Frameworks/js/validarFormulario.js"></script>
 </body>
 
 </html>
