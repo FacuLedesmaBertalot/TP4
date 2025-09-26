@@ -1,6 +1,7 @@
 <?php
-include_once "../Models/Conector/BaseDatos.php";
-include_once "../Models/Auto.php";
+include_once(__DIR__ . "/../Models/Conector/BaseDatos.php");
+include_once(__DIR__ . "/../Models/Auto.php");
+
 
 class AutoControl extends Auto {
 
