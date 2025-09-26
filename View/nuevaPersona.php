@@ -18,7 +18,7 @@
                         <h4>Nueva Persona</h4>
                     </div>
                     <div class="card-body">
-                        <form action="accionNuevaPersona.php" method="post" onsubmit="return validarFormularioPersona()">
+                        <form action="./Actions/accionNuevaPersona.php" method="post" onsubmit="return validarFormularioPersona()">
 
                             <div class="mb-3">
                                 <label for="dni" class="form-label">DNI</label>

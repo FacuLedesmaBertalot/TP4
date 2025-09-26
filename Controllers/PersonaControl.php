@@ -1,6 +1,7 @@
 <?php
-include_once "../Models/Conector/BaseDatos.php";
-include_once "../Models/Persona.php";
+include_once(__DIR__ . "/../Models/Conector/BaseDatos.php");
+include_once(__DIR__ . "/../Models/Persona.php");
+
 
 class PersonaControl extends Persona {
 

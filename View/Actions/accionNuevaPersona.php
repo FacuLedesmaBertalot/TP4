@@ -1,6 +1,6 @@
 <?php
-require_once ("../Controllers/PersonaControl.php");
-require_once ("../Utils/funciones.php");
+require_once ("../../Controllers/PersonaControl.php");
+require_once ("../../Utils/funciones.php");
 
 $datos = dataSubmited();
 
@@ -23,11 +23,11 @@ $resultado = $persona->insertarControl();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultado Nueva Persona</title>
-    <link rel="stylesheet" href="Frameworks/bootstrap.min.css">
+    <link rel="stylesheet" href="../Frameworks/bootstrap.min.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <?php require "../View/Structure/header.php"; ?>
+    <?php require "../Structure/header.php"; ?>
 
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -41,7 +41,7 @@ $resultado = $persona->insertarControl();
                                 <li><?= $err ?></li>
                             <?php endforeach; ?>
                         </ul>
-                        <a href="NuevaPersona.php" class="btn btn-primary mt-3">Volver al formulario</a>
+                        <a href="../nuevaPersona.php" class="btn btn-primary mt-3">Volver al formulario</a>
                     </div>
                 <?php else: ?>
                     <div class="alert alert-success">
@@ -50,7 +50,7 @@ $resultado = $persona->insertarControl();
                         <p><strong>DNI:</strong> <?= htmlspecialchars($datos['dni']) ?></p>
                         <p><strong>Nombre:</strong> <?= htmlspecialchars($datos['nombre']) ?></p>
                         <p><strong>Apellido:</strong> <?= htmlspecialchars($datos['apellido']) ?></p>
-                        <a href="../View/listarPersonas.php" class="btn btn-success mt-3">Ver Listado</a>
+                        <a href="../listarPersonas.php" class="btn btn-success mt-3">Ver Listado</a>
                     </div>
                 <?php endif; ?>
 
@@ -58,8 +58,8 @@ $resultado = $persona->insertarControl();
         </div>
     </div>
 
-    <?php require "../View/Structure/footer.php"; ?>
+    <?php require "../Structure/footer.php"; ?>
 
-    <script src="Frameworks/bootstrap.bundle.min.js"></script>
+    <script src="../Frameworks/bootstrap.bundle.min.js"></script>
 </body>
 </html>
