@@ -1,7 +1,7 @@
 <?php
-require_once "../Utils/funciones.php";
-require_once "../Controllers/AutoControl.php";
-require_once "../Controllers/PersonaControl.php";
+require_once "../../Utils/funciones.php";
+require_once "../../Controllers/AutoControl.php";
+require_once "../../Controllers/PersonaControl.php";
 
 // Recibir datos del formulario usando dataSubmited
 $datos = dataSubmited();
@@ -37,11 +37,11 @@ if (empty($resultado['error'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultado Cambio de Dueño</title>
-    <link rel="stylesheet" href="Frameworks/bootstrap.min.css">
+    <link rel="stylesheet" href="../Frameworks/bootstrap.min.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <?php require "../View/Structure/header.php"; ?>
+    <?php require "../Structure/header.php"; ?>
 
     <div class="container mt-5">
         <h2>Cambio de Dueño de Auto</h2>
@@ -62,11 +62,11 @@ if (empty($resultado['error'])) {
             </div>
         <?php endif; ?>
 
-        <a href="CambioDuenio.php" class="btn btn-primary mt-3">Volver</a>
+        <a href="../CambioDuenio.php" class="btn btn-primary mt-3">Volver</a>
     </div>
 
-    <?php require "../View/Structure/footer.php"; ?>
+    <?php require "../Structure/footer.php"; ?>
     
-    <script src="Frameworks/bootstrap.bundle.min.js"></script>
+    <script src="../Frameworks/bootstrap.bundle.min.js"></script>
 </body>
 </html>

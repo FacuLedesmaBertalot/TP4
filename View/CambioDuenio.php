@@ -15,7 +15,7 @@
     <div class="container mt-5">
         <h2 class="mb-4">Cambio de Dueño de Auto</h2>
 
-        <form action="accionCambioDuenio.php" method="post" onsubmit="return validarFormularioCambio()">
+        <form action="./Actions/accionCambioDuenio.php" method="post" onsubmit="return validarFormularioCambio()">
             <div class="mb-3">
                 <label for="patente" class="form-label">Patente del Auto:</label>
                 <input type="text" class="form-control" id="patente" name="patente" placeholder="Ej: ABC123" required>
