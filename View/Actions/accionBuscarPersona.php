@@ -1,6 +1,6 @@
 <?php
-require_once "../Utils/funciones.php";
-require_once "../Controllers/PersonaControl.php";
+require_once ("../../Controllers/PersonaControl.php");
+require_once ("../../Utils/funciones.php");
 
 $datos = dataSubmited();
 $dni = isset($datos['dni']) ? trim($datos['dni']) : '';
@@ -14,21 +14,21 @@ $persona = PersonaControl::buscarPorDni($dni);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar Persona</title>
-    <link rel="stylesheet" href="Frameworks/bootstrap.min.css">
+    <link rel="stylesheet" href="../Frameworks/bootstrap.min.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <?php require "../View/Structure/header.php"; ?>
+    <?php require "../Structure/header.php"; ?>
 
     <div class="container mt-5">
         <?php if (!$persona): ?>
             <div class="alert alert-danger">
                 No se encontró ninguna persona con DNI <strong><?= htmlspecialchars($dni) ?></strong>.
             </div>
-            <a href="BuscarPersona.php" class="btn btn-secondary mt-2">Volver</a>
+            <a href="../buscarPersona.php" class="btn btn-secondary mt-2">Volver</a>
         <?php else: ?>
             <h2>Actualizar Datos de Persona</h2>
-            <form action="actualizarDatosPersona.php" method="post" onsubmit="return validarFormularioPersona()">
+            <form action="../actualizarDatosPersona.php" method="post" onsubmit="return validarFormularioPersona()">
                 <input type="hidden" name="dni" value="<?= $persona->getNroDNI(); ?>">
 
                 <div class="mb-3">
@@ -57,10 +57,10 @@ $persona = PersonaControl::buscarPorDni($dni);
         <?php endif; ?>
     </div>
 
-    <?php require "../View/Structure/footer.php"; ?>
+    <?php require "../Structure/footer.php"; ?>
 
-    <script src="Frameworks/bootstrap.bundle.min.js"></script>
-    <script src="Frameworks/js/validarFormulario.js"></script>
+    <script src="../Frameworks/js/validarFormulario.js"></script>
+    <script src="../Frameworks/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 

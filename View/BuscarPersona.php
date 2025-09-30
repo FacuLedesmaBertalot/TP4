@@ -20,7 +20,7 @@
                         <h4>Buscar Persona</h4>
                     </div>
                     <div class="card-body">
-                        <form action="accionBuscarPersona.php" method="post" onsubmit="return validarBuscarPersona()">
+                        <form action="./Actions/accionBuscarPersona.php" method="post" onsubmit="return validarBuscarPersona()">
                             <div class="mb-3">
                                 <label for="dni" class="form-label">Número de Documento:</label>
                                 <input type="text" name="dni" id="dni" class="form-control" required>
